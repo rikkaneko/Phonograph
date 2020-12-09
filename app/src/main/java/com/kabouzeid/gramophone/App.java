@@ -69,7 +69,8 @@ public class App extends Application {
     }
 
     public static boolean isProVersion() {
-        return BuildConfig.DEBUG || app.billingProcessor.isPurchased(PRO_VERSION_PRODUCT_ID);
+        //return BuildConfig.DEBUG || app.billingProcessor.isPurchased(PRO_VERSION_PRODUCT_ID);
+        return true;
     }
 
     private static OnProVersionChangedListener onProVersionChangedListener;
@@ -113,26 +114,26 @@ public class App extends Application {
 
         @Override
         protected void onPreExecute() {
-            wasPro = App.isProVersion();
+//            wasPro = App.isProVersion();
         }
 
         @Override
         protected Void doInBackground(Void... params) {
-            BillingProcessor billingProcessor = billingProcessorWeakReference.get();
-            if (billingProcessor != null) {
-                // The Google billing library has it's own cache for about 8 - 12 hours.
-                // The following only updates the billing processors cache if the Google billing library returns a value.
-                // Therefore, even if the user is longer than 8 - 12 hours without internet the purchase is cached.
-                billingProcessor.loadOwnedPurchasesFromGoogle();
-            }
+//            BillingProcessor billingProcessor = billingProcessorWeakReference.get();
+//            if (billingProcessor != null) {
+//                // The Google billing library has it's own cache for about 8 - 12 hours.
+//                // The following only updates the billing processors cache if the Google billing library returns a value.
+//                // Therefore, even if the user is longer than 8 - 12 hours without internet the purchase is cached.
+//                billingProcessor.loadOwnedPurchasesFromGoogle();
+//            }
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            if (wasPro != App.isProVersion()) {
-                App.notifyProVersionChanged();
-            }
+//            if (wasPro != App.isProVersion()) {
+//                App.notifyProVersionChanged();
+//            }
         }
     }
 }
